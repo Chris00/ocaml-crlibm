@@ -6,8 +6,7 @@
 
 #define WRAP1(fn)                                       \
   CAMLexport value fn##_bc(value x) {                   \
-    CAMLparam1(x);                                      \
-    CAMLreturn(caml_copy_double(fn(Double_val(x))));    \
+    return(caml_copy_double(fn(Double_val(x))));        \
   }
 
 #define WRAP1_4ROUNDING(name) \
@@ -46,6 +45,5 @@ WRAP1_4ROUNDING(expm1)
 WRAP1_4ROUNDING(log1p)
 
 CAMLexport value pow_rn_bc(value x, value y) {
-  CAMLparam2(x, y);
-  CAMLreturn(caml_copy_double(pow_rn(Double_val(x), Double_val(y))));
+  return(caml_copy_double(pow_rn(Double_val(x), Double_val(y))));
 }
