@@ -5,6 +5,11 @@ all build byte native:
 	jbuilder exec config/prepare.exe
 	jbuilder build @install @runtest --dev
 
+speed:
+	jbuilder build tests/speed.exe
+#	Execute directly to see the output progress:
+	_build/default/tests/speed.exe
+
 install uninstall:
 	jbuilder $@
 
@@ -41,5 +46,5 @@ clean:
 lint:
 	opam lint crlibm.opam
 
-.PHONY: all build byte native install uninstall doc \
+.PHONY: all build byte native speed install uninstall doc \
   distrib submit get-crlibm clean lint

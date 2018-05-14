@@ -17,4 +17,5 @@ depends: [
   "stdio" {build}
   "configurator" {build}
   "base-bytes" {build}
+  "benchmark" {test}
 ]
