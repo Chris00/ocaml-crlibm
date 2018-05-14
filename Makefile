@@ -17,7 +17,8 @@ doc:
 	sed -e 's/%%VERSION%%/$(PKGVERSION)/' src/crlibm.mli \
 	  > _build/default/src/crlibm.mli
 	jbuilder build @doc
-	echo '.def { background: #f9f9de; }' >> _build/default/_doc/odoc.css
+	@echo '.def { background: #f0f0f0; }' \
+	  >> _build/default/_doc/_html/odoc.css
 
 distrib: build
 	topkg distrib --skip-build

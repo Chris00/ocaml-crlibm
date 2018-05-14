@@ -1,4 +1,26 @@
 
+module type S = sig
+  val exp : float -> float
+  val expm1 : float -> float
+  val log : float -> float
+  val log1p : float -> float
+  val cos : float -> float
+  val sin : float -> float
+  val tan : float -> float
+  val cospi : float -> float
+  val sinpi : float -> float
+  val tanpi : float -> float
+  val asin : float -> float
+  val acos : float -> float
+  val atan : float -> float
+  val asinpi : float -> float
+  val acospi : float -> float
+  val atanpi : float -> float
+  val cosh : float -> float
+  val sinh : float -> float
+  val log2 : float -> float
+  val log10 : float -> float
+end
 
 (* Order of the definitions is the same as in crlibm/crlibm.h *)
 external exp : float -> float = "exp_rn_bc" "exp_rn" [@@unboxed]
