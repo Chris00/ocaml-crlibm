@@ -1,8 +1,7 @@
 PKGVERSION = $(shell git describe --always)
 PKGTARBALL = crlibm-$(PKGVERSION).tbz
 
-all build byte native:
-	jbuilder exec config/prepare.exe
+all build byte native: prepare
 	jbuilder build @install @runtest --dev
 
 speed:
@@ -23,7 +22,6 @@ doc:
 distrib: build
 	topkg distrib --skip-build
 #	Add CRlibm files so the package is self contained.
-	jbuilder exec config/prepare.exe
 	@cd _build \
 	&& tar -xf $(PKGTARBALL) \
 	&& cp -a ../src/crlibm/ crlibm-$(PKGVERSION)/src \
@@ -37,6 +35,10 @@ submit: distrib
 	topkg opam pkg
 	topkg opam submit
 
+prepare:
+	[ -d src/crlibm ] || $(MAKE) get-crlibm
+	jbuilder exec config/prepare.exe
+
 get-crlibm:
 	git clone https://scm.gforge.inria.fr/anonscm/git/metalibm/crlibm.git \
 	  src/crlibm
@@ -48,4 +50,4 @@ lint:
 	opam lint crlibm.opam
 
 .PHONY: all build byte native speed install uninstall doc \
-  distrib submit get-crlibm clean lint
+  distrib submit prepare get-crlibm clean lint

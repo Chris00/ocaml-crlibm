@@ -42,9 +42,10 @@ let conf_crlibm c =
     | _ -> cflags in
   let has_ia32_de = arch = "i386" in (* double extended *)
   (* let has_ia64_de = arch = "amd64" in *)
-  let has_fpu_control = C.C_define.import c ~includes:["fpu_control.h"]
-                          ["_FPU_DEFAULT", C.C_define.Type.Switch]
-                        <> [] in
+  let has_fpu_control = try C.C_define.import c ~includes:["fpu_control.h"]
+                              ["_FPU_DEFAULT", C.C_define.Type.Switch]
+                            <> []
+                        with _ -> false in
   let cflags = if has_fpu_control then "-DCRLIBM_HAS_FPU_CONTROL" :: cflags
                else cflags in
   let cflags = (* Default values *)
