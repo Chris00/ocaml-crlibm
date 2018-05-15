@@ -4,6 +4,7 @@ platform:
 environment:
   global:
     PACKAGE: crlibm
+    PRE_INSTALL_HOOK: make prepare
     FORK_USER: ocaml
     FORK_BRANCH: master
     CYG_ROOT: C:\cygwin64

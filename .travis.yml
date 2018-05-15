@@ -6,6 +6,7 @@ os:
 env:
   global:
     - PACKAGE=crlibm
+    - PRE_INSTALL_HOOK="make prepare"
   matrix:
     - OCAML_VERSION=4.06
     - OCAML_VERSION=4.05

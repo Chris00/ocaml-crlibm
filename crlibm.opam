@@ -8,7 +8,6 @@ dev-repo: "https://github.com/Chris00/ocaml-crlibm.git"
 bug-reports: "https://github.com/Chris00/ocaml-crlibm/issues"
 doc: "https://Chris00.github.io/ocaml-crlibm/doc"
 build: [
-  [ make "prepare" ] {pinned}
   [ "jbuilder" "subst" ] {pinned}
   [ "jbuilder" "build" "-p" name "-j" jobs ]
 ]
