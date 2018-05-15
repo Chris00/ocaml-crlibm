@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Chris00/ocaml-crlibm.svg?branch=master)](https://travis-ci.org/Chris00/ocaml-crlibm)
+[![Build status](https://ci.appveyor.com/api/projects/status/ehavk7u0ymouapmr?svg=true)](https://ci.appveyor.com/project/Chris00/ocaml-crlibm)
 
 Crlibm
 ======
