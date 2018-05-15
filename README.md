@@ -22,3 +22,9 @@ Install
 The easier is to use opam:
 
     opam install crlibm
+
+Documentation
+-------------
+
+See [crlibm.mli](src/crlibm.mli), also available
+[online](https://Chris00.github.io/ocaml-crlibm/doc).
