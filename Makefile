@@ -19,22 +19,6 @@ doc:
 	@echo '.def { background: #f0f0f0; }' \
 	  >> _build/default/_doc/_html/odoc.css
 
-distrib: build
-	topkg distrib --skip-build
-#	Add CRlibm files so the package is self contained.
-	@cd _build \
-	&& tar -xf $(PKGTARBALL) \
-	&& cp -a ../src/crlibm/ crlibm-$(PKGVERSION)/src \
-	&& $(RM) -r $(addprefix crlibm-$(PKGVERSION)/src/crlibm/, \
-	  .git docs maple gappa tests) \
-	&& tar -jcf $(PKGTARBALL) crlibm-$(PKGVERSION) \
-	&& $(RM) -r crlibm-$(PKGVERSION)
-
-submit: distrib
-	topkg publish
-	topkg opam pkg
-	topkg opam submit
-
 get-crlibm:
 	git subtree add -P src/crlibm \
 	  https://scm.gforge.inria.fr/anonscm/git/metalibm/crlibm.git \
