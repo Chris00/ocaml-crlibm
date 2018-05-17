@@ -3,9 +3,4 @@
 (executable
  ((name discover)
   (modules discover)
-  (libraries (configurator base stdio unix))))
-
-(executable
- ((name prepare)
-  (modules prepare)
-  (libraries (bytes str))))
+  (libraries (configurator base stdio))))

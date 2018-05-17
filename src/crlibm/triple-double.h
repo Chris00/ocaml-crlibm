@@ -8,11 +8,11 @@
 #ifndef TRIPLE_DOUBLE_H
 #define TRIPLE_DOUBLE_H 1
 
-#include "scs_lib/scs.h"
-#include "scs_lib/scs_private.h"
+#include "scs.h"
+#include "scs_private.h"
 
  /* undef all the variables that might have been defined in
-    scs_lib/scs_private.h */
+    scs_private.h */
 #undef VERSION 
 #undef PACKAGE 
 #undef HAVE_GMP_H

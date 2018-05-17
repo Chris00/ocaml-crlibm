@@ -8,8 +8,8 @@
 #ifndef CRLIBM_PRIVATE_H
 #define CRLIBM_PRIVATE_H 1
 
-#include "scs_lib/scs.h"
-#include "scs_lib/scs_private.h"
+#include "scs.h"
+#include "scs_private.h"
 
 #ifdef HAVE_CONFIG_H
 #include "crlibm_config.h"

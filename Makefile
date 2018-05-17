@@ -1,7 +1,7 @@
 PKGVERSION = $(shell git describe --always)
 PKGTARBALL = crlibm-$(PKGVERSION).tbz
 
-all build byte native: prepare
+all build byte native:
 	jbuilder build @install @runtest --dev
 
 speed:
@@ -35,13 +35,10 @@ submit: distrib
 	topkg opam pkg
 	topkg opam submit
 
-prepare:
-	[ -d src/crlibm ] || $(MAKE) get-crlibm
-	jbuilder exec config/prepare.exe
-
 get-crlibm:
-	git clone https://scm.gforge.inria.fr/anonscm/git/metalibm/crlibm.git \
-	  src/crlibm
+	git subtree add -P src/crlibm \
+	  https://scm.gforge.inria.fr/anonscm/git/metalibm/crlibm.git \
+	  master
 
 clean:
 	jbuilder clean
@@ -50,4 +47,4 @@ lint:
 	opam lint crlibm.opam
 
 .PHONY: all build byte native speed install uninstall doc \
-  distrib submit prepare get-crlibm clean lint
+  distrib submit get-crlibm clean lint
