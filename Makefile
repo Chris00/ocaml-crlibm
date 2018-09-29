@@ -2,20 +2,20 @@ PKGVERSION = $(shell git describe --always)
 PKGTARBALL = crlibm-$(PKGVERSION).tbz
 
 all build byte native:
-	jbuilder build @install @runtest --dev
+	dune build @install @runtest
 
 speed:
-	jbuilder build tests/speed.exe
+	dune build tests/speed.exe
 #	Execute directly to see the output progress:
 	_build/default/tests/speed.exe
 
 install uninstall:
-	jbuilder $@
+	dune $@
 
 doc:
 	sed -e 's/%%VERSION%%/$(PKGVERSION)/' src/crlibm.mli \
 	  > _build/default/src/crlibm.mli
-	jbuilder build @doc
+	dune build @doc
 	@echo '.def { background: #f0f0f0; }' \
 	  >> _build/default/_doc/_html/odoc.css
 
@@ -25,7 +25,7 @@ get-crlibm:
 	  master
 
 clean:
-	jbuilder clean
+	dune clean
 
 lint:
 	opam lint crlibm.opam

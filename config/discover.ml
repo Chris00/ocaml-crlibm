@@ -1,21 +1,31 @@
-open Stdio
-module C = Configurator
-module String = Base.String
+module C = Configurator.V1
 
 (* This script is run in _build/<context>/src/ *)
 let crlibm_dir = "../../../src/crlibm"
 
 let copy fn0 fn1 =
-  (* Naive *)
-  Out_channel.write_all fn1 ~data:(In_channel.read_all fn0)
+  let fh0 = open_in_bin fn0 in
+  let fh1 = open_out_bin fn1 in
+  let b = Bytes.create 4096 in
+  let n = ref 0 in
+  while n := input fh0 b 0 4096;  !n > 0 do
+    output fh1 b 0 !n
+  done;
+  close_in fh0;
+  close_out fh1
 
 let has_header c h =
   try ignore(C.C_define.import c ~includes:[h] []); true
   with _ (* Fail to compile *) -> false
 
+let is_prefix ~prefix s =
+  (* naive *)
+  let n = String.length prefix in
+  n <= String.length s && String.sub s 0 n = prefix
+
 let add_has_header_flag c name ~cflags =
   if has_header c (name ^ ".h") then
-    ("-DHAVE_" ^ String.uppercase name ^ "_H") :: cflags
+    ("-DHAVE_" ^ String.uppercase_ascii name ^ "_H") :: cflags
   else cflags
 
 let conf_crlibm c =
@@ -31,7 +41,7 @@ let conf_crlibm c =
   let cflags = add_has_header_flag c "strings" ~cflags in
   let cflags = add_has_header_flag c "unistd" ~cflags in
   let cflags = if system = "cygwin" then ["-DCRLIBM_TYPEOS_CYGWIN"]
-               else if String.is_prefix system ~prefix:"bsd"
+               else if is_prefix system ~prefix:"bsd"
                        || List.mem system ["netbsd"; "freebsd"; "macosx"] then
                  "-DCRLIBM_TYPEOS_BSD" :: cflags
                else cflags in
@@ -63,6 +73,4 @@ let conf_crlibm c =
 let () =
   let c = C.create "crlibm" in
   let cflags = conf_crlibm c in
-  let write_sexp file sexp =
-    Out_channel.write_all file ~data:(Base.Sexp.to_string sexp) in
-  write_sexp "c_flags.sexp" (Base.sexp_of_list Base.sexp_of_string cflags)
+  C.Flags.write_sexp "c_flags.sexp" cflags
