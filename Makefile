@@ -1,7 +1,7 @@
 PKGVERSION = $(shell git describe --always)
 PKGTARBALL = crlibm-$(PKGVERSION).tbz
 
-all build byte native:
+all build:
 	dune build @install @runtest
 
 speed:
@@ -30,5 +30,4 @@ clean:
 lint:
 	opam lint crlibm.opam
 
-.PHONY: all build byte native speed install uninstall doc \
-  distrib submit get-crlibm clean lint
+.PHONY: all build speed install uninstall doc get-crlibm clean lint
