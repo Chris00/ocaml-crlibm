@@ -17,3 +17,4 @@ depends: [
   "base-bytes" {build}
   "benchmark" {with-test}
 ]
+synopsis: "Binding to CRlibm, a correctly rounded math lib"
