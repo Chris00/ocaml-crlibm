@@ -5,9 +5,7 @@ all build:
 	dune build @install @runtest
 
 speed:
-	dune build tests/speed.exe
-#	Execute directly to see the output progress:
-	_build/default/tests/speed.exe
+	dune exec tests/speed.exe
 
 install uninstall:
 	dune $@

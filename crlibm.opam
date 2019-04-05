@@ -10,6 +10,7 @@ doc: "https://Chris00.github.io/ocaml-crlibm/doc"
 build: [
   ["dune" "subst"] {pinned}
   ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "build" "-p" name "-j" jobs "@runtest"] {with-test}
 ]
 depends: [
   "ocaml" {>= "4.03"}
