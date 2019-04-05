@@ -40,7 +40,8 @@ let conf_crlibm c =
   let cflags = add_has_header_flag c "stdlib" ~cflags in
   let cflags = add_has_header_flag c "strings" ~cflags in
   let cflags = add_has_header_flag c "unistd" ~cflags in
-  let cflags = if system = "cygwin" then ["-DCRLIBM_TYPEOS_CYGWIN"]
+  let cflags = if system = "cygwin" || system = "mingw" || system = "mingw64" then
+                 "-DCRLIBM_TYPEOS_CYGWIN" :: cflags
                else if is_prefix system ~prefix:"bsd"
                        || List.mem system ["netbsd"; "freebsd"; "macosx"] then
                  "-DCRLIBM_TYPEOS_BSD" :: cflags
@@ -53,7 +54,7 @@ let conf_crlibm c =
   let has_ia32_de = arch = "i386" in (* double extended *)
   (* let has_ia64_de = arch = "amd64" in *)
   let has_fpu_control = try C.C_define.import c ~includes:["fpu_control.h"]
-                              ["_FPU_DEFAULT", C.C_define.Type.Switch]
+                              ["_FPU_SETCW", C.C_define.Type.Switch]
                             <> []
                         with _ -> false in
   let cflags = if has_fpu_control then "-DCRLIBM_HAS_FPU_CONTROL" :: cflags
