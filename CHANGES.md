@@ -1,3 +1,11 @@
+0.4 2019-04-06
+--------------
+
+- Fix undeclared symbol un CRlibm for Windows MinGW.
+- Fix warning about extraneous parentheses in CRlibm code.
+- Automatically execute `crlibm_init` and `crlibm_exit`.
+- Add some tests.
+
 0.3 2018-09-29
 --------------
 
