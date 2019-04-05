@@ -4,6 +4,21 @@
 #include <caml/memory.h>
 #include "crlibm.h"
 
+static unsigned long long cw;
+
+CAMLexport value caml_crlibm_init(value unit)
+{
+  cw = crlibm_init();
+  return Val_unit;
+}
+
+CAMLexport value caml_crlibm_exit(value unit)
+{
+  crlibm_exit(cw);
+  return Val_unit;
+}
+
+
 #define WRAP1(fn)                                       \
   CAMLexport value fn##_bc(value x) {                   \
     return(caml_copy_double(fn(Double_val(x))));        \

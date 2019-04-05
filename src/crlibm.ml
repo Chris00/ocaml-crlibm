@@ -22,6 +22,13 @@ module type S = sig
   val log10 : float -> float
 end
 
+external crlibm_init : unit -> unit = "caml_crlibm_init" [@@noalloc]
+external crlibm_exit : unit -> unit = "caml_crlibm_exit" [@@noalloc]
+
+let () =
+  crlibm_init();
+  at_exit crlibm_exit
+
 (* Order of the definitions is the same as in crlibm/crlibm.h *)
 external exp : float -> float = "exp_rn_bc" "exp_rn" [@@unboxed] [@@noalloc]
 external log : float -> float = "log_rn_bc" "log_rn" [@@unboxed] [@@noalloc]
