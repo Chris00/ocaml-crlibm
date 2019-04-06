@@ -11,11 +11,9 @@ install uninstall:
 	dune $@
 
 doc:
-	sed -e 's/%%VERSION%%/$(PKGVERSION)/' src/crlibm.mli \
-	  > _build/default/src/crlibm.mli
 	dune build @doc
-	@echo '.def { background: #f0f0f0; }' \
-	  >> _build/default/_doc/_html/odoc.css
+	sed -e 's/%%VERSION%%/$(PKGVERSION)/' --in-place \
+	  _build/default/_doc/_html/crlibm/Crlibm/index.html
 
 get-crlibm:
 	git subtree add -P src/crlibm \
