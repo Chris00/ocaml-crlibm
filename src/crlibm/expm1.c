@@ -2282,7 +2282,7 @@ interval j_expm1(interval x)
     ASSIGN_UP(res,res_sup);
     return res;
   }
-  if((supDone==1))
+  if (supDone==1)
   {
     /* If we are here, we can use expm1(x) = exp(x) - 1 */
 

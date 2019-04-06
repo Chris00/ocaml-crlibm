@@ -1231,7 +1231,7 @@ void log2_td_accurate(double *logb2h, double *logb2m, double *logb2l, int E, dou
      ASSIGN_UP(res,restemp_sup);
      return res;
    }
-   if((infDone==0))
+   if (infDone==0)
    {
      xdb_inf.i[HI] =  index_inf | 0x3ff00000;	/* do exponent = 0 */
      index_inf = (index_inf + (1<<(20-L-1))) >> (20-L);
@@ -1363,7 +1363,7 @@ void log2_td_accurate(double *logb2h, double *logb2m, double *logb2l, int E, dou
      printf("Going for Accurate Phase for x=%1.50e\n",x_inf);
 #endif
 
-     if((roundable==0))
+     if (roundable==0)
      {
        log2_td_accurate(&logb2h_inf, &logb2m_inf, &logb2l_inf, E_inf, ed_inf, index_inf, zh_inf, zl_inf, logih_inf, logim_inf); 
        RoundDownwards3(&restemp_inf,logb2h_inf, logb2m_inf, logb2l_inf);
@@ -1372,7 +1372,7 @@ void log2_td_accurate(double *logb2h, double *logb2m, double *logb2l, int E, dou
      ASSIGN_UP(res,restemp_sup);
      return res;
    }
-   if((supDone==0))
+   if (supDone==0)
    {
      xdb_sup.i[HI] =  index_sup | 0x3ff00000;	/* do exponent = 0 */
      index_sup = (index_sup + (1<<(20-L-1))) >> (20-L);
@@ -1506,7 +1506,7 @@ void log2_td_accurate(double *logb2h, double *logb2m, double *logb2l, int E, dou
      printf("Going for Accurate Phase for x=%1.50e\n",x_inf);
 #endif
 
-     if((roundable==0))
+     if (roundable==0)
      {
        log2_td_accurate(&logb2h_sup, &logb2m_sup, &logb2l_sup, E_sup, ed_sup, index_sup, zh_sup, zl_sup, logih_sup, logim_sup); 
        RoundUpwards3(&restemp_sup,logb2h_sup, logb2m_sup, logb2l_sup);

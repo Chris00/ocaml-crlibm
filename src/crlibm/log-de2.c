@@ -260,7 +260,7 @@ double log_rn(double x) {
    FMA22_ext(&th, &tl,    z,0, th,tl,  c2h,c2l);
    FMA22_ext(&th, &tl,    z,0, th,tl,  c1h,c1l);
 
-   if((X_NEAR_1)) {
+   if(X_NEAR_1) {
      Mul22_ext(&th, &tl,  z,0,  th,tl);
    }
    else{

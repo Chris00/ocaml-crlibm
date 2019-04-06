@@ -90,7 +90,7 @@ int rem_pio2_scs(scs_ptr result, const scs_ptr x){
 
 
   /* Compute the product |x| * 2/Pi */
-  if ((X_IND == -1)){
+  if (X_IND == -1) {
     /* In this case we consider number between ]-1,+1[    */
     /* we may use simpler algorithm such as Cody And Waite */
     r[0] =  0;    r[1] =  0;

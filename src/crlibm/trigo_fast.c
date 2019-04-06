@@ -173,7 +173,7 @@ static int rem_pio256_scs(scs_ptr result, const scs_ptr x){
   }
   
   /* Compute the product |x| * 256/Pi */
-  if ((X_IND == -2)){
+  if (X_IND == -2) {
     r[0] =  0;    r[1] =  0;
     r[2] =  (uint64_t)(digits_256_over_pi[0]) * X_HW[0];
     r[3] = ((uint64_t)(digits_256_over_pi[0]) * X_HW[1]
@@ -415,7 +415,7 @@ static void ComputeTrigWithArgred(rrinfo *rri){
 #endif
     quadrant = (k>>7)&3;      
     index=(k&127)<<2;
-    if((index == 0)) { 
+    if (index == 0) {
       /* Here a large cancellation on yh+yl would be a problem, so use double-double RR */
       /* all this is exact */
       Mul12(&kch_h, &kch_l,   kd, RR_DD_MCH);
