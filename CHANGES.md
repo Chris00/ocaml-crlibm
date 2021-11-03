@@ -1,7 +1,12 @@
+0.5 2021-11-03
+--------------
+
+- Rename sub-modules to more standard names.
+
 0.4 2019-04-06
 --------------
 
-- Fix undeclared symbol un CRlibm for Windows MinGW.
+- Fix undeclared symbol in CRlibm for Windows MinGW.
 - Fix warning about extraneous parentheses in CRlibm code.
 - Automatically execute `crlibm_init` and `crlibm_exit`.
 - Add some tests.
