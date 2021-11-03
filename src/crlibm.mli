@@ -67,17 +67,21 @@ include S
 
 val pow : float -> float -> float
 (** [pow x y] computes [x] to the power [y].
-    {b Beware} that this is not proved correctly rounded for all inputs. *)
+    {b Beware} that this is not proved to be correctly rounded
+    for all inputs. *)
 
 
 (** {2 Round toward -∞}  *)
 
-module Low : S
+module RoundDown : S
+module Low = RoundDown [@@deprecated "Use Crlibm.RoundDown"]
 
 (** {2 Round toward +∞}  *)
 
-module High : S
+module RoundUp : S
+module High = RoundUp [@@deprecated "Use Crlibm.RoundUp"]
 
 (** {2 Round toward zero}  *)
 
-module Zero : S
+module RoundToZero : S
+module Zero = RoundToZero [@@deprecated "Use Crlibm.RoundToZero"]

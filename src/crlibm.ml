@@ -64,7 +64,7 @@ external log1p : float -> float
 external pow : float -> float -> float
   = "pow_rn_bc" "pow_rn" [@@unboxed] [@@noalloc]
 
-module Low = struct
+module RoundDown = struct
   external exp : float -> float = "exp_rd_bc" "exp_rd" [@@unboxed] [@@noalloc]
   external log : float -> float = "log_rd_bc" "log_rd" [@@unboxed] [@@noalloc]
   external cos : float -> float = "cos_rd_bc" "cos_rd" [@@unboxed] [@@noalloc]
@@ -102,8 +102,9 @@ module Low = struct
   external log1p : float -> float
     = "log1p_rd_bc" "log1p_rd" [@@unboxed] [@@noalloc]
 end
+module Low = RoundDown
 
-module High = struct
+module RoundUp = struct
   external exp : float -> float = "exp_ru_bc" "exp_ru" [@@unboxed] [@@noalloc]
   external log : float -> float = "log_ru_bc" "log_ru" [@@unboxed] [@@noalloc]
   external cos : float -> float = "cos_ru_bc" "cos_ru" [@@unboxed] [@@noalloc]
@@ -141,8 +142,9 @@ module High = struct
   external log1p : float -> float
     = "log1p_ru_bc" "log1p_ru" [@@unboxed] [@@noalloc]
 end
+module High = RoundUp
 
-module Zero = struct
+module RoundToZero = struct
   external exp : float -> float = "exp_rd_bc" "exp_rd" [@@unboxed] [@@noalloc]
   external log : float -> float = "log_rz_bc" "log_rz" [@@unboxed] [@@noalloc]
   external cos : float -> float = "cos_rz_bc" "cos_rz" [@@unboxed] [@@noalloc]
@@ -180,3 +182,5 @@ module Zero = struct
   external log1p : float -> float
     = "log1p_rz_bc" "log1p_rz" [@@unboxed] [@@noalloc]
 end
+
+module Zero = RoundToZero
