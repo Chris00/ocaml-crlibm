@@ -14,8 +14,7 @@ build: [
 ]
 depends: [
   "ocaml" {>= "4.03"}
-  "dune"
-  "dune-configurator"
+  "dune-configurator" {>= "2.0"}
   "base-bytes" {build}
   "benchmark" {with-test}
 ]
