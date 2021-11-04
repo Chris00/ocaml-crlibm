@@ -30,6 +30,9 @@ jobs:
           - ocaml-version: 4.13.0
             os: ubuntu-latest
             skip_test: true
+          - ocaml-version: 4.13.0
+            arch: armv6
+            os: ubuntu-latest
 
     runs-on: ${{ matrix.os }}
 
