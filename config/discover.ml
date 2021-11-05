@@ -69,6 +69,11 @@ let conf_crlibm c =
   else (
     copy "log.c" "log-selected.c";
   );
+  (* Workaround 32 bits linker problem.  See
+     https://github.com/ocaml/opam-repository/pull/19943 *)
+  let cflags = if arch = "i386" && system = "linux" then
+                 "-ccopt -z -ccopt notext" :: cflags
+               else cflags in
   cflags
 
 let () =

@@ -2,6 +2,7 @@
 --------------
 
 - Rename sub-modules to more standard names.
+- Workaround 32 bits linker problem.
 
 0.4 2019-04-06
 --------------
