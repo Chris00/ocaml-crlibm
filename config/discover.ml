@@ -71,7 +71,7 @@ let conf_crlibm c =
   );
   (* Workaround 32 bits linker problem.  See
      https://github.com/ocaml/opam-repository/pull/19943 *)
-  let cflags = if arch = "i386" && system = "linux" then
+  let cflags = if arch = "i386" && (system = "linux_elf" || sytem = "elf") then
                  "-ccopt -z -ccopt notext" :: cflags
                else cflags in
   cflags
