@@ -8,6 +8,8 @@
           exp-td exp-td-standalone expm1-standalone
           expm1
           log-selected
+          log2-selected
+          log10-selected
           log1p
           rem_pio2_accurate
           trigo_fast trigo_accurate
@@ -29,6 +31,7 @@
 (copy_files# crlibm/scs_lib/*.{c,h})
 
 (rule
- (targets log-selected.c c_flags.sexp lib_flags.sexp)
+ (targets log-selected.c log2-selected.c log10-selected.c
+          c_flags.sexp lib_flags.sexp)
  (deps    ../config/discover.exe)
  (action  (run %{deps})))

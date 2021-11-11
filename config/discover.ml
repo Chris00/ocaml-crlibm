@@ -3,8 +3,8 @@ module C = Configurator.V1
 (* This script is run in _build/<context>/src/ *)
 let crlibm_dir = "../../../src/crlibm"
 
-let copy fn0 fn1 =
-  let fh0 = open_in_bin fn0 in
+let copy ?(src_dir=crlibm_dir) fn0 fn1 =
+  let fh0 = open_in_bin (Filename.concat src_dir fn0) in
   let fh1 = open_out_bin fn1 in
   let b = Bytes.create 4096 in
   let n = ref 0 in
@@ -13,6 +13,11 @@ let copy fn0 fn1 =
   done;
   close_in fh0;
   close_out fh1
+
+let echo s fn =
+  let fh = open_out fn in
+  output_string fh s;
+  close_out fh
 
 let has_header c h =
   try ignore(C.C_define.import c ~includes:[h] []); true
@@ -51,8 +56,6 @@ let conf_crlibm c =
     | "i386" -> "-DCRLIBM_TYPECPU_X86" :: cflags
     | "amd64" -> "-DCRLIBM_TYPECPU_AMD64" :: cflags
     | _ -> cflags in
-  let has_ia32_de = arch = "i386" in (* double extended *)
-  (* let has_ia64_de = arch = "amd64" in *)
   let has_fpu_control = try C.C_define.import c ~includes:["fpu_control.h"]
                               ["_FPU_SETCW", C.C_define.Type.Switch]
                             <> []
@@ -61,13 +64,18 @@ let conf_crlibm c =
                else cflags in
   let cflags = (* Default values *)
     "-DSCS_NB_BITS=30" :: "-DSCS_NB_WORDS=8" :: cflags in
+  (* let has_ia64_de = arch = "amd64" in *)
+  let has_ia32_de = arch = "i386" in (* double extended *)
   let use_hardware_de = has_ia32_de && has_fpu_control in
-  let copy fn0 fn1 = copy (Filename.concat crlibm_dir fn0) fn1 in
   if use_hardware_de then (
     copy "log-de.c" "log-selected.c";
+    copy "log2-td.c" "log2-selected.c";
+    copy "log10-td.c" "log10-selected.c";
   )
   else (
     copy "log.c" "log-selected.c";
+    echo "/* dummy */" "log2-selected.c";
+    echo "/* dummy */" "log10-selected.c";
   );
   let libflags = if arch = "i386" && system = "linux_elf" then
                    ["-ccopt"; "-z"; "-ccopt"; "notext"]
