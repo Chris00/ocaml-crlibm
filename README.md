@@ -1,3 +1,5 @@
+![Build status](https://github.com/Chris00/ocaml-crlibm/actions/workflows/main.yml/badge.svg)
+
 Crlibm
 ======
 
