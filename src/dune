@@ -22,12 +22,13 @@
 	  double2scs zero_scs
 	  multiplication_scs scs2double)
  (c_flags  :standard (:include c_flags.sexp))
+ (library_flags :standard (:include lib_flags.sexp))
  (synopsis "Binding to CRlibm, correctly rounded math lib"))
 
 (copy_files# crlibm/*.{c,h})
 (copy_files# crlibm/scs_lib/*.{c,h})
 
 (rule
- (targets log-selected.c c_flags.sexp)
+ (targets log-selected.c c_flags.sexp lib_flags.sexp)
  (deps    ../config/discover.exe)
  (action  (run %{deps})))

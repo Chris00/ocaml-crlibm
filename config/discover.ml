@@ -69,9 +69,14 @@ let conf_crlibm c =
   else (
     copy "log.c" "log-selected.c";
   );
-  cflags
+  let libflags = if arch = "i386" && system = "linux_elf" then
+                   ["-ccopt"; "-z"; "-ccopt"; "notext"]
+                 else [] in
+  cflags, libflags
+
 
 let () =
   let c = C.create "crlibm" in
-  let cflags = conf_crlibm c in
-  C.Flags.write_sexp "c_flags.sexp" cflags
+  let cflags, libflags = conf_crlibm c in
+  C.Flags.write_sexp "c_flags.sexp" cflags;
+  C.Flags.write_sexp "lib_flags.sexp" libflags
