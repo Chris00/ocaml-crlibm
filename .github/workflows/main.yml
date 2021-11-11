@@ -40,7 +40,8 @@ jobs:
       SKIP_TEST: ${{ matrix.skip_test }}
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Cache
         uses: actions/cache@v2
         with:
