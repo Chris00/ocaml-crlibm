@@ -7,6 +7,9 @@ all build:
 speed:
 	dune exec tests/speed.exe
 
+test:
+	docker build -f Dockerfile .
+
 install uninstall:
 	dune $@
 
@@ -26,4 +29,4 @@ clean:
 lint:
 	opam lint crlibm.opam
 
-.PHONY: all build speed install uninstall doc get-crlibm clean lint
+.PHONY: all build speed test install uninstall doc get-crlibm clean lint
