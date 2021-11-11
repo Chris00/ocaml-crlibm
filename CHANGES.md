@@ -1,3 +1,8 @@
+0.5.1 2021-11-11
+----------------
+
+- Fix compilation on the Intel 32 bits platform.
+
 0.5 2021-11-03
 --------------
 
