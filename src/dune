@@ -33,5 +33,5 @@
 (rule
  (targets log-selected.c log2-selected.c log10-selected.c
           c_flags.sexp lib_flags.sexp)
- (deps    ../config/discover.exe)
+ (deps    ../config/discover.exe (source_tree crlibm))
  (action  (run %{deps})))

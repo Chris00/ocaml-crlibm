@@ -1,7 +1,7 @@
 module C = Configurator.V1
 
 (* This script is run in _build/<context>/src/ *)
-let crlibm_dir = "../../../src/crlibm"
+let crlibm_dir = "crlibm"
 
 let copy ?(src_dir=crlibm_dir) fn0 fn1 =
   let fh0 = open_in_bin (Filename.concat src_dir fn0) in
