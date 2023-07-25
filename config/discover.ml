@@ -77,7 +77,7 @@ let conf_crlibm c =
     echo "/* dummy */" "log2-selected.c";
     echo "/* dummy */" "log10-selected.c";
   );
-  let libflags = if arch = "i386" && system = "linux_elf" then
+  let libflags = if arch = "i386" && is_prefix system ~prefix:"linux" then
                    ["-ccopt"; "-z"; "-ccopt"; "notext"]
                  else [] in
   cflags, libflags
